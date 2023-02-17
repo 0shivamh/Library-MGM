@@ -38,8 +38,11 @@ const NavbarComponent = () =>{
                                 token? null:
                                     <Link  className="btn white-btn m-lg-1" to="/signUp">Sign Up</Link>
                             }
+                            {
+                                token? <Link  to="/signUp"><RxAvatar className="h1 light m-lg-1"/></Link>:null
 
-                            <Link  to="/signUp"><RxAvatar className="h1 light m-lg-1"/></Link>
+                            }
+
 
                         </Nav>
                     </Navbar.Collapse>
