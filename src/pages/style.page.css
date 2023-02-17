@@ -1,0 +1,8 @@
+
+.cbtn{
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(114,45,253,1) 100%);
+}
+.cbtn:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
