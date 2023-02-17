@@ -2,6 +2,7 @@
 import {Navbar, Container, Nav} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import Logout from "./logout.component";
+import logo from "../images/logo.png"
 const NavbarComponent = () =>{
 
     const token = localStorage.getItem('token');

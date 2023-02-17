@@ -1,7 +1,7 @@
 import {Container, Row, Col, Image} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import "./style.component.css"
-import logo from "../Animations/unnamed (1).png";
+import logo from "../images/logo.png";
 const FooterComponent =()=>{
     return(<>
         <div className="foot noprint">
@@ -14,8 +14,8 @@ const FooterComponent =()=>{
                         height="30"
                         className="d-inline-block align-top"
                         alt="BigBooster"
-                    /> Admission Portal</b></p>
-                    <p>Smart way handle your data</p>
+                    />Library MGM</b></p>
+                    <p>Smart way to manage your library</p>
                 </Col>
                 <Col >
                     <Link to="" className="link-footer">Security</Link><br/>
@@ -30,8 +30,6 @@ const FooterComponent =()=>{
                     <Link to="" className="link-footer">Help</Link><br/>
                 </Col>
                 <Col>
-                    {/*<Link to="" className="link-footer">Refund</Link><br/>*/}
-                    {/*<Link to="" className="link-footer">User Guide</Link><br/>*/}
 
                     <Image className="img-fluid" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" />
 
@@ -43,7 +41,7 @@ const FooterComponent =()=>{
                     height="30"
                     className="d-inline-block mb-2"
                     alt="BigBooster"
-                /> Admission Portal © {new Date().getFullYear()} All Rights Reserved{" "}| Developed by <a className="link-footer" href="https://www.google.com" style={{color:"white"}}>---</a></span>
+                /> Library MGM © {new Date().getFullYear()} All Rights Reserved{" "}</span>
                 <hr/>
 
             </Row>
