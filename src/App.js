@@ -4,6 +4,7 @@ import FooterComponent from "./components/footer.component";
 import HomePage from "./pages/home.page";
 import SignInPage from "./pages/signin.page";
 import SignUpPage from "./pages/signUp.page";
+import NotFoundComponent from "./components/NotFound.component";
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,9 @@ function App() {
           <Route path="/" exact element={<HomePage/>}/>
           <Route path="/signIn" exact element={<SignInPage/>}/>
           <Route path="/signUp" exact element={<SignUpPage/>}/>
+
+
+            <Route path="*"  element={<NotFoundComponent />} />
 
         </Routes>
           <footer>
