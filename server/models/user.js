@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    lib_id: {
+    libId: {
         type: String,
         unique: true,
     },
@@ -12,11 +12,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: true,
     },
-    psw: {
-        type: String,
-    },
     phone: {
         type: Number,
+    },
+    psw: {
+        type: String,
     }
 });
 

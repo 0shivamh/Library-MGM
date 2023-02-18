@@ -13,17 +13,19 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/signup",
-    [check("lib_id", "Please provide Employee id").notEmpty()],
+    [check("libId", "Please provide Employee id").notEmpty()],
     [check("name", "Please provide  name").notEmpty()],
     [check("email", "Please provide a valid email").isEmail()],
-    [check("psw","Please provide a password 8 charecter long password").isLength({ min: 8 }),],
     [check("phone", "Please provide a valid phone").notEmpty()],
-
+    [check("psw","Please provide a password 8 charecter long password").isLength({ min: 8 }),]
+   ,
     async (req, res) => {
 
-        const { lib_id,name,email,psw, phone  } = req.body;
+        const { libId,name,email,phone,psw  } = req.body;
 
         const errors = validationResult(req);
+
+        console.log(errors)
 
         if (!errors.isEmpty()) {
             return res.json({ status: "error-psw", error: "Invalid" });
@@ -36,18 +38,16 @@ app.post("/api/signup",
                 }
             }
             catch(error){
-
             }
         }
 
         try {
             let user =new User({
-                lib_id,
+                libId,
                 name,
                 email,
-                psw,
                 phone,
-
+                psw,
             });
             const salt = await bcrypt.genSalt(10);
             user.psw = await bcrypt.hash(psw, salt)
@@ -116,6 +116,18 @@ app.post( "/api/signin",
         }
     }
 );
+
+app.get("/api/lib/:email",  async (req, res) => {
+    const email=req.params.email
+    try {
+        const emp = await User.findOne({email} );
+        // console.log(emp)
+        return res.send(emp)
+        // return res.json({ status: "okay" });
+    } catch (err) {
+        return res.json({ status: "error" });
+    }
+});
 
 module.exports = app
 

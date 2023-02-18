@@ -24,4 +24,11 @@
 .link-footer{
     color: white;
 }
-
+.dash-card{
+    text-decoration: none;
+    color: black;
+}
+.dash-card:hover{
+    text-decoration: none;
+    color: black;
+}

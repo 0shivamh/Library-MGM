@@ -56,7 +56,6 @@ const SignUpPage=()=>{
                     confirmButtonColor: '#242B2E'}
             )
             setPsw("")
-
         }
         else if(data.status==='error-email'){
             Swal.fire(

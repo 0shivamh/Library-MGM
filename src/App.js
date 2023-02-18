@@ -8,6 +8,7 @@ import NotFoundComponent from "./components/NotFound.component";
 import NoAuth from "./noauth";
 import Auth from "./auth";
 import DashboardPage from "./pages/dashboard.page";
+import AddBookPage from "./pages/addBook.page";
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,7 @@ function App() {
             {/*private routes*/}
             <Route path="/" exact element={<Auth/>} >
                 <Route path="dashboard" exact element={<DashboardPage/>} />
+                <Route path="dashboard/addBook" exact element={<AddBookPage/>} />
             </Route>
 
             <Route path="*"  element={<NotFoundComponent />} />

@@ -29,7 +29,10 @@ const NavbarComponent = () =>{
                             <Nav.Link style={{color:"white"}} href="/">Contact</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/">Help</Nav.Link>
                             <Nav.Link style={{color:"white"}} href="/">Support</Nav.Link>
+                            {
+                                token? <Link  to="/signUp"><RxAvatar className="h1 light m-lg-1"/></Link>:null
 
+                            }
                             {
                                 token? <Logout/>:
                                     <Link  className="btn white-btn m-lg-1" to="/signIn">Sign In</Link>
@@ -38,12 +41,6 @@ const NavbarComponent = () =>{
                                 token? null:
                                     <Link  className="btn white-btn m-lg-1" to="/signUp">Sign Up</Link>
                             }
-                            {
-                                token? <Link  to="/signUp"><RxAvatar className="h1 light m-lg-1"/></Link>:null
-
-                            }
-
-
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
