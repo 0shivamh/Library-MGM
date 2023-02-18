@@ -21,6 +21,8 @@ app.get('/', (req, res) => {
 
 app.use('/', require(path.join(__dirname, 'Routes/user.route')))
 
+app.use('/', require(path.join(__dirname, 'Routes/books.route')))
+
 app.listen(port, () => {
     console.log(`app listening on port ${port}`)
 })
