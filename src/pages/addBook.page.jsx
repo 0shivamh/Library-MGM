@@ -64,6 +64,7 @@ const AddBookPage=(props)=>{
                     icon:'error',
                     confirmButtonColor: '#5ae4a7'}
             )
+            props.getBooks(); // to refresh internally
             setBookAvailability("")
             setBookTitle("")
             setBookAuthor("")

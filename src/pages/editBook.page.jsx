@@ -2,6 +2,7 @@ import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
 import {MuiChipsInput} from "mui-chips-input";
 import {useEffect, useState} from "react";
 import Swal from "sweetalert2";
+import ViewBooksPage from "./viewBooks.page";
 
 const EditBookPage=(props)=>{
 
@@ -12,6 +13,8 @@ const EditBookPage=(props)=>{
     const [bookExcert, setBookExcert] = useState("")
     const [bookContent, setBookContent] = useState("")
     const [bookGenres, setBookGenres] = useState()
+
+    const [refreshVal,setrefreshVal]=useState(false)
 
     const handleChange = (newChips) => {
         setBookGenres(newChips) //bookGenres
@@ -26,7 +29,7 @@ const EditBookPage=(props)=>{
         setBookContent(props.book.bookContent)
 
         setBookGenres(props.book.bookGenres)
-    },[])
+    },[props.book])
 
     async function updateBook(event){
         event.preventDefault()
@@ -50,13 +53,14 @@ const EditBookPage=(props)=>{
 
             })
         const data= await response.json();
-        console.table(data)
         if(data.status==='okay'){
             Swal.fire(
                 {title:'Book detail updated successfully',
                     icon:'success',
                     confirmButtonColor: '#5ae4a7'}
             )
+            props.getBooks(); // to refresh internally
+
         }
         else if(data.status==='error'){
             Swal.fire(

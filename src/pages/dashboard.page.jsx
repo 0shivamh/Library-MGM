@@ -10,7 +10,8 @@ import Swal from "sweetalert2";
 import ViewBookPage from "./viewBook.page";
 import EditBookPage from "./editBook.page";
 import UpdateBookPage from "./updateBook.page";
-const DashboardPage=()=>{
+import ViewBooksPage from "./viewBooks.page";
+const DashboardPage=(props)=>{
     const navigate = useNavigate();
     const [showAddBook, setShowAddBook] = useState(false);
     const [showBook, setShowBook] = useState(false);
@@ -131,7 +132,7 @@ const DashboardPage=()=>{
                     <Col>
 
                         <Button variant="dark" onClick={() => setShowAddBook(true)}>Add a Book</Button>
-                        <AddBookPage show={showAddBook} close={()=>setShowAddBook(false)}/>
+                        <AddBookPage show={showAddBook} getBooks={getBooks()} close={()=>setShowAddBook(false)}/>
 
                     </Col>
 
@@ -156,65 +157,68 @@ const DashboardPage=()=>{
                     </Col>
                 </Row>
                 <Row xs={2} className="text-center m-1 ">
-                    <Table striped bordered hover variant="dark" className="shadow">
-                        <thead>
-                        <tr>
-                            <th>Sr No</th>
-                            <th>Book Availability</th>
-                            <th>Book Title</th>
-                            <th>Book Author</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
 
-                            books.filter(book => {
-                                if (query === '') {
-                                    return book;
-                                } else if (book.bookTitle.toLowerCase().includes(query.toLowerCase())) {
-                                    return book;
-                                }
-                            }).map((e, id) => (
-                                <tr>
-                                    <td>{id+1}</td>
-                                    <td>{e.bookAvailability}</td>
-                                    <td>{e.bookTitle}</td>
-                                    <td>{e.bookAuthor}</td>
-                                    <td style={{textAlign:"right"}}>
+                    <ViewBooksPage val={props.refreshVal} />
 
-                                        <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
-                                            handleView(books[id]._id)}
-                                        }>
-                                            <AiFillEye/>
-                                        </Button>
-                                        <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={ ()=>{
-                                            removeBook(books[id]._id)}
-                                        }>
-                                            <AiFillDelete/>
-                                        </Button>
+                    {/*<Table striped bordered hover variant="dark" className="shadow">*/}
+                    {/*    <thead>*/}
+                    {/*    <tr>*/}
+                    {/*        <th>Sr No</th>*/}
+                    {/*        <th>Book Availability</th>*/}
+                    {/*        <th>Book Title</th>*/}
+                    {/*        <th>Book Author</th>*/}
+                    {/*        <th></th>*/}
+                    {/*    </tr>*/}
+                    {/*    </thead>*/}
+                    {/*    <tbody>*/}
+                    {/*    {*/}
 
-                                        <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
-                                            handleEdit(books[id]._id)}
-                                        }>
-                                            <AiFillEdit/>
-                                        </Button>
+                    {/*        books.filter(book => {*/}
+                    {/*            if (query === '') {*/}
+                    {/*                return book;*/}
+                    {/*            } else if (book.bookTitle.toLowerCase().includes(query.toLowerCase())) {*/}
+                    {/*                return book;*/}
+                    {/*            }*/}
+                    {/*        }).map((e, id) => (*/}
+                    {/*            <tr>*/}
+                    {/*                <td>{id+1}</td>*/}
+                    {/*                <td>{e.bookAvailability}</td>*/}
+                    {/*                <td>{e.bookTitle}</td>*/}
+                    {/*                <td>{e.bookAuthor}</td>*/}
+                    {/*                <td style={{textAlign:"right"}}>*/}
 
-                                        <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
-                                            handleEdit1(books[id]._id)}
-                                        }>
-                                          Try
-                                        </Button>
+                    {/*                    <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{*/}
+                    {/*                        handleView(books[id]._id)}*/}
+                    {/*                    }>*/}
+                    {/*                        <AiFillEye/>*/}
+                    {/*                    </Button>*/}
+                    {/*                    <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={ ()=>{*/}
+                    {/*                        removeBook(books[id]._id)}*/}
+                    {/*                    }>*/}
+                    {/*                        <AiFillDelete/>*/}
+                    {/*                    </Button>*/}
+
+                    {/*                    <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{*/}
+                    {/*                        handleEdit(books[id]._id)}*/}
+                    {/*                    }>*/}
+                    {/*                        <AiFillEdit/>*/}
+                    {/*                    </Button>*/}
+
+                    {/*                    <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{*/}
+                    {/*                        handleEdit1(books[id]._id)}*/}
+                    {/*                    }>*/}
+                    {/*                      Try*/}
+                    {/*                    </Button>*/}
 
 
-                                    </td>
-                                </tr>
+                    {/*                </td>*/}
+                    {/*            </tr>*/}
 
-                            ))
-                        }
+                    {/*        ))*/}
+                    {/*    }*/}
 
-                        </tbody>
-                    </Table>
+                    {/*    </tbody>*/}
+                    {/*</Table>*/}
                 </Row>
 
             </div>
