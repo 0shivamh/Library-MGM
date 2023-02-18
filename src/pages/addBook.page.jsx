@@ -12,6 +12,14 @@ const AddBookPage=(props)=>{
     const [bookContent, setBookContent] = useState('')
     const [bookGenres, setBookGenres] = useState('')
 
+    // to reflex data on realtime basis
+    const [books, setBooks] = useState([]);
+    async function getBooks(){
+        const response= await fetch("http://localhost:5003/api/viewBooks");
+        const data= await response.json();
+        setBooks(data);
+    }
+
     const handleChange = (newChips) => {
         setBookGenres(newChips) //bookGenres
     }
@@ -46,9 +54,9 @@ const AddBookPage=(props)=>{
                     confirmButtonColor: '#5ae4a7'}
             ).then((result)=>{
                 if (result.isConfirmed) {
-                    // props.cancel=false
-                    // props.show=false
+
             }})
+            getBooks();
             setBookAvailability("")
             setBookTitle("")
             setBookAuthor("")

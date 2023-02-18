@@ -4,9 +4,7 @@ const User = require("../models/user");
 
 const auth =(req,res,next)=>{
 
-
     const token = req.headers['x-access-token']
-
 
     if(!token){
         return res.status(401).json({msg:'No token access denied'})

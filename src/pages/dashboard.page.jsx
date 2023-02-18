@@ -87,7 +87,7 @@ const DashboardPage=()=>{
     const [book, setBook] = useState([]);
     async function getBook(book_id){
         const response= await fetch(`http://localhost:5003/api/getBook/${book_id}`);
-        const data= await response.json();
+        const data = await response.json();
         setBook(data);
     }
 

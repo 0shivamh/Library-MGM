@@ -1,20 +1,74 @@
 import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
 import {MuiChipsInput} from "mui-chips-input";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Swal from "sweetalert2";
 
 const EditBookPage=(props)=>{
 
-    // console.log(props.book)
 
-    const [bookAvailability, setBookAvailability] = useState(props.book.bookAvailability)
-    const [bookTitle, setBookTitle] = useState(props.book.bookTitle)
-    const [bookAuthor, setBookAuthor] = useState(props.book.bookAuthor)
-    const [bookExcert, setBookExcert] = useState(props.book.bookExcert)
-    const [bookContent, setBookContent] = useState(props.book.bookContent)
-    const [bookGenres, setBookGenres] = useState(props.book.bookGenres)
+    const [bookAvailability, setBookAvailability] = useState("")
+    const [bookTitle, setBookTitle] = useState("")
+    const [bookAuthor, setBookAuthor] = useState("")
+    const [bookExcert, setBookExcert] = useState("")
+    const [bookContent, setBookContent] = useState("")
+    const [bookGenres, setBookGenres] = useState()
 
+    // setBookAuthor(props.book.bookTitle)
     const handleChange = (newChips) => {
         setBookGenres(newChips) //bookGenres
+    }
+
+    // set initial values
+    useEffect(()=>{
+        setBookAvailability(props.book.bookAvailability)
+        setBookTitle(props.book.bookTitle)
+        setBookAuthor(props.book.bookAuthor)
+        setBookExcert(props.book.bookExcert)
+        setBookContent(props.book.bookContent)
+
+        setBookGenres(props.book.bookGenres)
+    },[props.book])
+
+    async function updateBook(event){
+        event.preventDefault()
+
+        const response= await fetch(`http://localhost:5003/api/editBook/${props.book._id}`,
+            {
+                method:'POST',
+                headers:{
+                    'x-access-token':localStorage.getItem('token'),
+                    'email_id':localStorage.getItem('email'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    // _id,
+                    bookAvailability,
+                    bookTitle,
+                    bookAuthor,
+                    bookExcert,
+                    bookContent,
+                    bookGenres,
+                }),
+
+            })
+        const data= await response.json();
+        console.table(data)
+        if(data.status==='okay'){
+            Swal.fire(
+                {title:'Book detail updated successfully',
+                    icon:'success',
+                    confirmButtonColor: '#5ae4a7'}
+            )
+        }
+        else if(data.status==='error'){
+            Swal.fire(
+                {title:'Failed to edit!',
+                    text:'contact administrator!',
+                    icon:'error',
+                    confirmButtonColor: '#5ae4a7'}
+            )
+        }
+
     }
 
     return(<>
@@ -33,7 +87,7 @@ const EditBookPage=(props)=>{
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    <Form className="text-center mt-2" >
+                    <Form className="text-center mt-2" onSubmit={updateBook} >
                         <Form.Select value={bookAvailability}
                                      onChange={(e)=> setBookAvailability(e.target.value)} >
                             <option>Book Availability status</option>

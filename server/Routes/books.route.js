@@ -9,11 +9,11 @@ const bcryptjs = require("bcryptjs");
 const bcrypt = require("bcrypt");
 const User = require("../models/user")
 const Books = require("../models/book")
-
+const auth = require("../middleware/auth")
 app.use(cors());
 app.use(express.json());
 
-app.post("/api/addBook",
+app.post("/api/addBook",auth,
     async (req, res) => {
 
         const email = req.headers['email_id']
@@ -64,7 +64,8 @@ app.post("/api/removeBook/:id",  async (req, res,auth,) => {
     }
 });
 
-app.get("/api/getBook/:id",  async (req, res) => {
+app.get("/api/getBook/:id", async (req, res) => {
+
     try {
         const stud = await Books.findById(req.params.id );
         // console.log(stud)
@@ -72,7 +73,46 @@ app.get("/api/getBook/:id",  async (req, res) => {
     } catch (err) {
         return res.json({ status: "error-get" });
     }
+
 });
+
+app.post("/api/editBook/:id",auth,
+    async (req, res) => {
+
+        const email = req.headers['email_id']
+
+        let user = await Books.findById(req.params.id );
+        const {  bookAvailability,bookTitle,bookAuthor, bookExcert, bookContent,  bookGenres } = req.body;
+        try {
+
+            if (!user) {
+                return res.json({ status: "error", error: "invalid" });
+            }
+            else {
+
+                Books.findByIdAndUpdate(req.params.id, {
+                        bookAvailability:bookAvailability,
+                        bookTitle:bookTitle,
+                        bookAuthor:bookAuthor,
+                        bookExcert:bookExcert,
+                        bookContent:bookContent,
+                        bookGenres:bookGenres
+                    },
+                    function (err, docs) {
+                        if (err){
+                            return res.json({ status: "error" });
+                        }
+                        else{
+                            return res.json({ status: "okay" });
+                        }
+                    });
+            }
+        } catch (err) {
+            console.log(err);
+            res.status(500).send("Server Error");
+        }
+    }
+);
 
 module.exports = app
 
