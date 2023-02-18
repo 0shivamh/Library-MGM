@@ -9,11 +9,14 @@ import AddBookPage from "./addBook.page";
 import Swal from "sweetalert2";
 import ViewBookPage from "./viewBook.page";
 import EditBookPage from "./editBook.page";
+import UpdateBookPage from "./updateBook.page";
 const DashboardPage=()=>{
     const navigate = useNavigate();
     const [showAddBook, setShowAddBook] = useState(false);
     const [showBook, setShowBook] = useState(false);
     const [SediBook, setSEditBook] = useState(false);
+
+    const [showUpdate, setShowUpdate] = useState(false);
 
     const [librarian,setLibrarian]=useState([])
     const [query, setQuery] = useState("")
@@ -107,11 +110,16 @@ const DashboardPage=()=>{
         getBook(_id)
         setSEditBook(true)
     }
+    function handleEdit1(_id) {
+        getBook(_id)
+        setShowUpdate(true)
+    }
 
     return(
         <>
             <ViewBookPage bookId={bookId} book={book} show={showBook} close={()=>setShowBook(false)}/>
             <EditBookPage book={book} show={SediBook} close={()=>setSEditBook(false)}/>
+            <UpdateBookPage book={book} show={showUpdate} close={()=>setShowUpdate(false)}/>
             <div className="m-2">
                 <Row className="align-items-end">
                     <BackbtnComponent/>
@@ -181,7 +189,7 @@ const DashboardPage=()=>{
                                             <AiFillEye/>
                                         </Button>
                                         <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={ ()=>{
-                                        removeBook(books[id]._id)}
+                                            removeBook(books[id]._id)}
                                         }>
                                             <AiFillDelete/>
                                         </Button>
@@ -190,6 +198,12 @@ const DashboardPage=()=>{
                                             handleEdit(books[id]._id)}
                                         }>
                                             <AiFillEdit/>
+                                        </Button>
+
+                                        <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
+                                            handleEdit1(books[id]._id)}
+                                        }>
+                                          Try
                                         </Button>
 
 

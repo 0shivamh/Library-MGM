@@ -1,77 +1,31 @@
 import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
-import { MuiChipsInput } from 'mui-chips-input'
-import {useState} from "react";
-import Swal from "sweetalert2";
-import DashboardPage from "./dashboard.page";
+import {MuiChipsInput} from "mui-chips-input";
+import {useEffect, useState} from "react";
 
-const AddBookPage=(props)=>{
+const UpdateBookPage=(props)=>{
 
-    const [bookAvailability, setBookAvailability] = useState('')
-    const [bookTitle, setBookTitle] = useState('')
-    const [bookAuthor, setBookAuthor] = useState('')
-    const [bookExcert, setBookExcert] = useState('')
-    const [bookContent, setBookContent] = useState('')
-    const [bookGenres, setBookGenres] = useState('')
 
+    const [bookAvailability, setBookAvailability] = useState("")
+    const [bookTitle, setBookTitle] = useState("")
+    const [bookAuthor, setBookAuthor] = useState("")
+    const [bookExcert, setBookExcert] = useState("")
+    const [bookContent, setBookContent] = useState("")
+    const [bookGenres, setBookGenres] = useState()
 
     const handleChange = (newChips) => {
         setBookGenres(newChips) //bookGenres
     }
 
-    async function AddBook(event){
-        event.preventDefault()
-        const response= await fetch("http://localhost:5003/api/addBook",
-            {
-                method:'POST',
-                headers:{
-                    'x-access-token':localStorage.getItem('token'),
-                    'email_id':localStorage.getItem('email'),
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    // _id,
-                    bookAvailability,
-                    bookTitle,
-                    bookAuthor,
-                    bookExcert,
-                    bookContent,
-                    bookGenres,
-                }),
+    // set initial values
+    useEffect(()=>{
+        setBookAvailability(props.book.bookAvailability)
+        setBookTitle(props.book.bookTitle)
+        setBookAuthor(props.book.bookAuthor)
+        setBookExcert(props.book.bookExcert)
+        setBookContent(props.book.bookContent)
 
-            })
-        const data= await response.json();
-
-        if(data.status==='okay'){
-            Swal.fire(
-                {title:'Book detail successfully',
-                    icon:'success',
-                    confirmButtonColor: '#5ae4a7'}
-            ).then((result)=>{
-                if (result.isConfirmed) {
-            }})
-
-            setBookAvailability("")
-            setBookTitle("")
-            setBookAuthor("")
-            setBookExcert("")
-            setBookContent("")
-            setBookGenres("")
-        }
-        else if(data.status==='error'){
-            Swal.fire(
-                {title:'Failed to add!',
-                    text:'contact administrator!',
-                    icon:'error',
-                    confirmButtonColor: '#5ae4a7'}
-            )
-            setBookAvailability("")
-            setBookTitle("")
-            setBookAuthor("")
-            setBookExcert("")
-            setBookContent("")
-            setBookGenres("")
-        }
-    }
+        setBookGenres(props.book.bookGenres)
+    },[])
 
     return(<>
 
@@ -84,12 +38,12 @@ const AddBookPage=(props)=>{
         >
             <Modal.Header >
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Add a Book
+                    Update Book Details
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    <Form className="text-center mt-2" onSubmit={AddBook}>
+                    <Form className="text-center mt-2"  >
                         <Form.Select value={bookAvailability}
                                      onChange={(e)=> setBookAvailability(e.target.value)} >
                             <option>Book Availability status</option>
@@ -119,7 +73,7 @@ const AddBookPage=(props)=>{
                         <MuiChipsInput className="form-control mt-2" placeholder="Genres" value={bookGenres} onChange={handleChange} />
 
                         <Button className="white-btn mt-2 m-2" type="submit">
-                            Add a Book
+                            Update
                         </Button>
                         <Button className="white-btn mt-2 m-2" onClick={props.close} >
                             Cancel
@@ -128,9 +82,7 @@ const AddBookPage=(props)=>{
                 </div>
             </Modal.Body>
         </Modal>
-
-
-
-        </>)
+    </>)
 }
-export default AddBookPage;
+
+export default UpdateBookPage

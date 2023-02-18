@@ -13,7 +13,6 @@ const EditBookPage=(props)=>{
     const [bookContent, setBookContent] = useState("")
     const [bookGenres, setBookGenres] = useState()
 
-    // setBookAuthor(props.book.bookTitle)
     const handleChange = (newChips) => {
         setBookGenres(newChips) //bookGenres
     }
@@ -27,11 +26,10 @@ const EditBookPage=(props)=>{
         setBookContent(props.book.bookContent)
 
         setBookGenres(props.book.bookGenres)
-    },[props.book])
+    },[])
 
     async function updateBook(event){
         event.preventDefault()
-
         const response= await fetch(`http://localhost:5003/api/editBook/${props.book._id}`,
             {
                 method:'POST',
@@ -68,7 +66,6 @@ const EditBookPage=(props)=>{
                     confirmButtonColor: '#5ae4a7'}
             )
         }
-
     }
 
     return(<>
