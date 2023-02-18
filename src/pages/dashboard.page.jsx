@@ -8,10 +8,13 @@ import {useEffect, useState} from "react";
 import AddBookPage from "./addBook.page";
 import Swal from "sweetalert2";
 import ViewBookPage from "./viewBook.page";
+import EditBookPage from "./editBook.page";
 const DashboardPage=()=>{
     const navigate = useNavigate();
     const [showAddBook, setShowAddBook] = useState(false);
     const [showBook, setShowBook] = useState(false);
+    const [SediBook, setSEditBook] = useState(false);
+
     const [librarian,setLibrarian]=useState([])
     const [query, setQuery] = useState("")
     const [len, setLen] = useState();
@@ -100,9 +103,15 @@ const DashboardPage=()=>{
         setShowBook(true)
     }
 
+    function handleEdit(_id) {
+        getBook(_id)
+        setSEditBook(true)
+    }
+
     return(
         <>
             <ViewBookPage bookId={bookId} book={book} show={showBook} close={()=>setShowBook(false)}/>
+            <EditBookPage book={book} show={SediBook} close={()=>setSEditBook(false)}/>
             <div className="m-2">
                 <Row className="align-items-end">
                     <BackbtnComponent/>
@@ -177,7 +186,9 @@ const DashboardPage=()=>{
                                             <AiFillDelete/>
                                         </Button>
 
-                                        <Button title="View" className="op-btn m-2" variant="light" size="sm">
+                                        <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
+                                            handleEdit(books[id]._id)}
+                                        }>
                                             <AiFillEdit/>
                                         </Button>
 
