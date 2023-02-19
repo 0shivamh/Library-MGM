@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import Swal from "sweetalert2";
 import ViewBookPage from "./viewBook.page";
 import EditBookPage from "./editBook.page";
-import UpdateBookPage from "./updateBook.page";
 import AddBookPage from "./addBook.page";
 
 
@@ -14,7 +13,6 @@ const ViewBooksPage=(props)=>{
     const [showBook, setShowBook] = useState(false);
     const [SediBook, setSEditBook] = useState(false);
 
-    const [showUpdate, setShowUpdate] = useState(false);
 
     const [query, setQuery] = useState("")
     const [len, setLen] = useState();
@@ -105,7 +103,6 @@ const ViewBooksPage=(props)=>{
         <>
             <ViewBookPage bookId={bookId} book={book} show={showBook} close={()=>setShowBook(false)}/>
             <EditBookPage book={book} show={SediBook} getBooks={getBooks} close={()=>setSEditBook(false)}/>
-            <UpdateBookPage book={book} show={showUpdate}  close={()=>setShowUpdate(false)}/>
 
             <Row>
                 <Col>

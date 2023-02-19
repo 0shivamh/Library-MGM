@@ -1,7 +1,7 @@
 import {Button, Container, FloatingLabel, Form} from "react-bootstrap";
 import {useState} from "react";
 import Swal from "sweetalert2";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const SignInPage=()=>{
 
@@ -58,7 +58,8 @@ const SignInPage=()=>{
 
     return(<>
         <div className="d-flex justify-content-center m-4">
-            <Form className="text-center" onSubmit={handleSignIn}>
+            <Form className="text-center c-form" onSubmit={handleSignIn}>
+                <p className="h2">Sign In</p>
                 <FloatingLabel
                     controlId="floatingInput"
                     label="Email address"
@@ -76,6 +77,9 @@ const SignInPage=()=>{
                 <Button className="white-btn mt-2 mb-2" type="submit">
                     Sign In
                 </Button>
+                <Link to="/signUp" className="nav-link">Don't have an account? Register Now
+                </Link>
+                <Link to="/password-reset" className="nav-link" >Forgot Password?</Link>
             </Form>
         </div>
 

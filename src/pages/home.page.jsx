@@ -14,6 +14,7 @@ const HomePage=()=>{
     const [loading,setLoading]=useState(true)
     const [books, setBooks] = useState([]);
     const [showBook, setShowBook] = useState();
+    const [query, setQuery] = useState("")
     async function getBooks(){
         setLoading(true);
         const response= await fetch("http://localhost:5003/api/viewBooks");
@@ -72,12 +73,30 @@ const HomePage=()=>{
                 </Carousel>
             </Row>
 
+            <Row xl={2} >
+                <Col>
+
+                </Col>
+                <Col >
+                    <form className="d-flex m-2" role="search">
+                        <input className="form-control " type="search" onChange={event => setQuery(event.target.value)} placeholder="Search Book" aria-label="Search"/>
+                    </form>
+                </Col>
+            </Row>
 
             <Row xl={5} className="g-4 m-4">
+
                 <p className="display-5">Check-out collection our books ➤</p>
 
                 {loading === false &&
-                    books.map((e, id) => (
+
+                    books.filter(book => {
+                        if (query === '') {
+                            return book;
+                        } else if (book.bookTitle.toLowerCase().includes(query.toLowerCase())) {
+                            return book;
+                        }
+                    }).map((e, id) => (
                             <Col key={id}>
                                 <Card className="home-card" onClick={()=>{
                                     handleView(books[id]._id)}}>

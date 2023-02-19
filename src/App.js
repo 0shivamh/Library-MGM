@@ -9,6 +9,7 @@ import NoAuth from "./noauth";
 import Auth from "./auth";
 import DashboardPage from "./pages/dashboard.page";
 import AddBookPage from "./pages/addBook.page";
+import ResetPswComponent from "./components/resetPsw.component";
 function App() {
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" exact element={<NoAuth/>} >
               <Route path="signIn" exact element={<SignInPage/>}/>
               <Route path="signUp" exact element={<SignUpPage/>}/>
+                <Route path="password-reset" exact element={<ResetPswComponent/>}/>
             </Route>
 
             {/*private routes*/}

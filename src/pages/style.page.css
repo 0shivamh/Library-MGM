@@ -1,6 +1,6 @@
 
 .cbtn{
-    
+
 }
 .cbtn:hover{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -10,4 +10,12 @@
 }
 .chips{
     border: none !important;
+}
+.c-form{
+    color: white;
+    width: 600px;
+    background-color: #242B2E;
+    padding: 20px;
+    border-radius: 10px;
+    border-bottom: 2px solid white;
 }

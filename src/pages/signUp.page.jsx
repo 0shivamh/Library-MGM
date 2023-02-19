@@ -1,7 +1,7 @@
 import {Button, FloatingLabel, Form} from "react-bootstrap";
 import {useState} from "react";
 import Swal from "sweetalert2";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const SignUpPage=()=>{
 
@@ -96,7 +96,8 @@ const SignUpPage=()=>{
     return(<>
 
         <div className="d-flex justify-content-center m-4">
-            <Form className="text-center" onSubmit={handleSignUp}>
+            <Form className="text-center c-form" onSubmit={handleSignUp}>
+                <p className="h2">Sign Up</p>
                 <FloatingLabel controlId="floatingPassword" label="Librarian Id">
                     <Form.Control type="text" placeholder="name@cloudredux.com"
                                   value={libId}
@@ -125,6 +126,8 @@ const SignUpPage=()=>{
                 <Button className="white-btn mt-2 mb-2" type="submit">
                     Sign Up
                 </Button>
+                <Link to="/signIn" className="nav-link">Already have an account? SignIn Now
+                </Link>
             </Form>
         </div>
 

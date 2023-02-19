@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const bcrypt = require("bcrypt");
 const User = require("../models/user")
+const Books = require("../models/book");
 
 app.use(cors());
 app.use(express.json());
@@ -121,13 +122,45 @@ app.get("/api/lib/:email",  async (req, res) => {
     const email=req.params.email
     try {
         const emp = await User.findOne({email} );
-        // console.log(emp)
         return res.send(emp)
-        // return res.json({ status: "okay" });
     } catch (err) {
         return res.json({ status: "error" });
     }
 });
+
+app.post("/api/lib/reset/:libId",
+    [check("libId", "Please provide a valid id")],
+    async (req, res) => {
+        const { libId,psw } = req.body;
+
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.json({ status: "error", error: "Invalid" });
+        } else {
+            let user = await User.findOne({ libId });
+            if (!user) {
+                return res.json({ status: "error", error: "Invalid" });
+            }
+            try {
+                const salt = await bcrypt.genSalt(10);
+                const psw1 = await bcrypt.hash(psw, salt);
+                // console.log(psw1);
+                user = await User.findOneAndUpdate(
+                    { libId: req.body.libId },
+                    { $set: { psw: psw1 } },
+                    { new: true }
+                );
+
+                return res.json({ status: "okay", error: "valid" });
+
+            } catch (error) {
+                // console.log(error.message);
+                res.status(500).send("Server Error");
+            }
+        }
+    }
+);
 
 module.exports = app
 
