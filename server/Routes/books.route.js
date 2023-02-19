@@ -13,7 +13,7 @@ const auth = require("../middleware/auth")
 app.use(cors());
 app.use(express.json());
 
-app.post("/api/addBook",auth,
+app.post("/api/addBook",
     async (req, res) => {
 
         const email = req.headers['email_id']
@@ -76,7 +76,7 @@ app.get("/api/getBook/:id", async (req, res) => {
 
 });
 
-app.post("/api/editBook/:id",auth,
+app.post("/api/editBook/:id",
     async (req, res) => {
 
         const email = req.headers['email_id']
