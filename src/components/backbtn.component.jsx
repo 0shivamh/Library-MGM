@@ -8,9 +8,9 @@ const BackbtnComponent = ()=>{
     return(<>
                 <Row xs={2} className="noprint">
                     <Col>
-                        <Link to="/" className="btn cbtn m-1">Home</Link>
+                        <Link to="/" className="btn btn-dark m-1">Home</Link>
 
-                        <Link to={-1} className="btn cbtn m-1">Back</Link>
+                        <Link to={-1} className="btn btn-dark m-1">Back</Link>
                     </Col>
                     <Col>
 

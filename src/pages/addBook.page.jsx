@@ -49,7 +49,7 @@ const AddBookPage=(props)=>{
             ).then((result)=>{
                 if (result.isConfirmed) {
             }})
-
+            props.getBooks(); // to refresh internally
             setBookAvailability("")
             setBookTitle("")
             setBookAuthor("")
@@ -64,7 +64,7 @@ const AddBookPage=(props)=>{
                     icon:'error',
                     confirmButtonColor: '#5ae4a7'}
             )
-            props.getBooks(); // to refresh internally
+
             setBookAvailability("")
             setBookTitle("")
             setBookAuthor("")
@@ -117,7 +117,8 @@ const AddBookPage=(props)=>{
                                           value={bookContent}
                                           onChange={(e)=> setBookContent(e.target.value)}/>
                         </FloatingLabel>
-                        <MuiChipsInput className="form-control mt-2" placeholder="Genres" value={bookGenres} onChange={handleChange} />
+                        <MuiChipsInput className="form-control mt-2"   helperText={bookGenres.length > 0 ? "Double click to edit a chip" : ""}
+                                       placeholder="Type Genres and Enter" value={bookGenres} onChange={handleChange} />
 
                         <Button className="white-btn mt-2 m-2" type="submit">
                             Add a Book

@@ -60,7 +60,6 @@ const EditBookPage=(props)=>{
                     confirmButtonColor: '#5ae4a7'}
             )
             props.getBooks(); // to refresh internally
-
         }
         else if(data.status==='error'){
             Swal.fire(
@@ -71,6 +70,10 @@ const EditBookPage=(props)=>{
             )
         }
     }
+
+    // useEffect(()=>{
+    //
+    // })
 
     return(<>
 

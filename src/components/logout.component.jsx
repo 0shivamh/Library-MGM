@@ -23,7 +23,6 @@ const Logout = () => {
           })
     }
 
-
     return(
         <>
             <button  className="btn white-btn" onClick={handleLogout}>Sign Out</button>

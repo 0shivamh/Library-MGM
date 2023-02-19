@@ -25,12 +25,11 @@ const NavbarComponent = () =>{
                     <Navbar.Toggle style={{color:"white"}} aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse  id="basic-navbar-nav" style={{color:"white"}}>
                         <Nav className="ms-auto mb-2 mb-lg-0 d-fle"  style={{color:"white"}} >
-                            <Nav.Link style={{color:"white"}} href="/">Home</Nav.Link>
-                            <Nav.Link style={{color:"white"}} href="/">Contact</Nav.Link>
-                            <Nav.Link style={{color:"white"}} href="/">Help</Nav.Link>
-                            <Nav.Link style={{color:"white"}} href="/">Support</Nav.Link>
+                            <Link style={{color:"white"}} to="/" className="nav-link">Home</Link>
+                            <Link style={{color:"white"}} to="/contact" className="nav-link">Contact</Link>
+                            <Link style={{color:"white"}} to="/support" className="nav-link">Support</Link>
                             {
-                                token? <Link  to="/signUp"><RxAvatar className="h1 light m-lg-1"/></Link>:null
+                                token? <Link className="btn white-btn m-lg-1"  to="/dashboard">Dashboard</Link>:null
 
                             }
                             {

@@ -18,8 +18,9 @@ function App() {
         </header>
         <Routes>
 
+            <Route path="" exact element={<HomePage/>}/>
+
             <Route path="/" exact element={<NoAuth/>} >
-              <Route path="" exact element={<HomePage/>}/>
               <Route path="signIn" exact element={<SignInPage/>}/>
               <Route path="signUp" exact element={<SignUpPage/>}/>
             </Route>

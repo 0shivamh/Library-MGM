@@ -114,7 +114,7 @@ const SignUpPage=()=>{
                 </FloatingLabel>
                 <FloatingLabel controlId="floatingPassword" label="Mobile Number">
                     <Form.Control type="number" placeholder="name@cloudredux.com"
-                                  value={phone}
+                                  value={phone} maxlength="12"
                                   onChange={(e)=> setPhone(e.target.value)}/>
                 </FloatingLabel>
                 <FloatingLabel controlId="floatingPassword" label="Password">

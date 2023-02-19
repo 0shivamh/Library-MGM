@@ -1,3 +1,6 @@
+body{
+    background-color: #CAD5E2 !important;
+}
 .form-select:focus{
     border: #03203C solid 1px !important;
     box-shadow: none !important;
@@ -13,4 +16,31 @@
 .form-control{
     margin-top: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.home-card{
+    border-radius: 10px !important;
+    /*background-color: #393B45 !important;*/
+    border-bottom: #242B2E 2px solid !important;
+    padding-bottom: 1px !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.home-card:hover{
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: all 0.2s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.c-btn{
+    border-radius: 25px !important;
+    background-color: white !important;
+    color: #03203C !important;
+}
+.c-btn:focus {
+    display: none;
+}
+
+.c-btn:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }

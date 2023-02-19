@@ -1,14 +1,16 @@
-import {Button, Table} from "react-bootstrap";
+import {Button, Col, Row, Table} from "react-bootstrap";
 import {AiFillDelete, AiFillEdit, AiFillEye} from "react-icons/ai";
 import {useEffect, useState} from "react";
 import Swal from "sweetalert2";
 import ViewBookPage from "./viewBook.page";
 import EditBookPage from "./editBook.page";
 import UpdateBookPage from "./updateBook.page";
+import AddBookPage from "./addBook.page";
 
 
 const ViewBooksPage=(props)=>{
 
+    const [showAddBook, setShowAddBook] = useState(false);
     const [showBook, setShowBook] = useState(false);
     const [SediBook, setSEditBook] = useState(false);
 
@@ -98,71 +100,80 @@ const ViewBooksPage=(props)=>{
         getBook(_id)
         setSEditBook(true)
     }
-    function handleEdit1(_id) {
-        getBook(_id)
-        setShowUpdate(true)
-    }
 
     return(
         <>
             <ViewBookPage bookId={bookId} book={book} show={showBook} close={()=>setShowBook(false)}/>
-            <EditBookPage book={book} show={SediBook} getBooks={getBooks()} close={()=>setSEditBook(false)}/>
+            <EditBookPage book={book} show={SediBook} getBooks={getBooks} close={()=>setSEditBook(false)}/>
             <UpdateBookPage book={book} show={showUpdate}  close={()=>setShowUpdate(false)}/>
 
-            <form className="d-flex" role="search">
-                <input className="form-control " type="search" onChange={event => setQuery(event.target.value)} placeholder="Search Book" aria-label="Search"/>
-            </form>
+            <Row>
+                <Col>
+                    <p className=" text-left h5">Total Books: {len}</p>
+                </Col>
+                <Col className="text-end">
+                    <form className="d-flex mb-2" role="search">
+                        <input className="form-control " type="search" onChange={event => setQuery(event.target.value)} placeholder="Search Book" aria-label="Search"/>
+                    </form>
+                </Col>
+            </Row>
 
-            <Table striped bordered hover variant="dark" className="shadow">
-                <thead>
-                <tr>
-                    <th>Sr No</th>
-                    <th>Book Availability</th>
-                    <th>Book Title</th>
-                    <th>Book Author</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {
+            <Row className="m-1">
+                <Table striped bordered hover variant="dark" className="shadow">
+                    <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Book Availability</th>
+                        <th>Book Title</th>
+                        <th>Book Author</th>
+                        <th style={{textAlign:"right"}}>
+                            <AddBookPage show={showAddBook} getBooks={getBooks} close={()=>setShowAddBook(false)}/>
+                            <Button variant="light" onClick={() => setShowAddBook(true)}>Add a Book</Button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
 
-                    books.filter(book => {
-                        if (query === '') {
-                            return book;
-                        } else if (book.bookTitle.toLowerCase().includes(query.toLowerCase())) {
-                            return book;
-                        }
-                    }).map((e, id) => (
-                        <tr>
-                            <td>{id+1}</td>
-                            <td>{e.bookAvailability}</td>
-                            <td>{e.bookTitle}</td>
-                            <td>{e.bookAuthor}</td>
-                            <td style={{textAlign:"right"}}>
-                                <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
-                                    handleView(books[id]._id)}
-                                }>
-                                    <AiFillEye/>
-                                </Button>
-                                <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={ ()=>{
-                                    removeBook(books[id]._id)}
-                                }>
-                                    <AiFillDelete/>
-                                </Button>
+                        books.filter(book => {
+                            if (query === '') {
+                                return book;
+                            } else if (book.bookTitle.toLowerCase().includes(query.toLowerCase())) {
+                                return book;
+                            }
+                        }).map((e, id) => (
+                            <tr>
+                                <td>{id+1}</td>
+                                <td>{e.bookAvailability}</td>
+                                <td>{e.bookTitle}</td>
+                                <td>{e.bookAuthor}</td>
+                                <td style={{textAlign:"right"}}>
+                                    <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
+                                        handleView(books[id]._id)}
+                                    }>
+                                        <AiFillEye/>
+                                    </Button>
+                                    <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={ ()=>{
+                                        removeBook(books[id]._id)}
+                                    }>
+                                        <AiFillDelete/>
+                                    </Button>
 
-                                <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
-                                    handleEdit(books[id]._id)}
-                                }>
-                                    <AiFillEdit/>
-                                </Button>
-                            </td>
-                        </tr>
+                                    <Button title="View" className="op-btn m-2" variant="light" size="sm" onClick={()=>{
+                                        handleEdit(books[id]._id)}
+                                    }>
+                                        <AiFillEdit/>
+                                    </Button>
+                                </td>
+                            </tr>
 
-                    ))
-                }
+                        ))
+                    }
 
-                </tbody>
-            </Table>
+                    </tbody>
+                </Table>
+            </Row>
+
         </>
     )
 }
