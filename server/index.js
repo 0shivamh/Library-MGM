@@ -15,9 +15,9 @@ app.use((req,res,next)=>{
     next();
 })
 
-// app.get('/', (req, res) => {
-//     res.send('APi')
-// })
+app.get('/', (req, res) => {
+    res.send('API')
+})
 
 app.use('/', require(path.join(__dirname, 'Routes/user.route')))
 
