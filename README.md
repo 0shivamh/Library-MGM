@@ -25,6 +25,9 @@ To deploy this project run
 
 ## Demo
 
+https://steady-pastelito-f46562.netlify.app/ (front-end)
+
+https://library-mgm-cmf5.vercel.app/ (API of App: Note: crashing in-between, Request you to run app locally)
 
 
 ## Note:
