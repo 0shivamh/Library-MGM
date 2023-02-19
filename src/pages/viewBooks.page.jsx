@@ -20,7 +20,7 @@ const ViewBooksPage=(props)=>{
 
 
     async function getBooks(){
-        const response= await fetch("https://library-mgm-cmf5.vercel.app/api/viewBooks");
+        const response= await fetch("http://localhost:5003/api/viewBooks");
         const data= await response.json();
         setBooks(data);
         setLen(data.length);
@@ -36,7 +36,7 @@ const ViewBooksPage=(props)=>{
                 allowEscapeKey: true,}
         ).then(async (result) => {
             if (result.isConfirmed) {
-                const response = await fetch(`https://library-mgm-cmf5.vercel.app/api/removeBook/${book_id}`, {
+                const response = await fetch(`http://localhost:5003/api/removeBook/${book_id}`, {
                     method: 'POST',
                     headers: {
                         'x-access-token': localStorage.getItem('token'),
@@ -77,7 +77,7 @@ const ViewBooksPage=(props)=>{
     // get boo details
     const [book, setBook] = useState([]);
     async function getBook(book_id){
-        const response= await fetch(`https://library-mgm-cmf5.vercel.app/api/getBook/${book_id}`);
+        const response= await fetch(`http://localhost:5003/api/getBook/${book_id}`);
         const data = await response.json();
         setBook(data);
     }

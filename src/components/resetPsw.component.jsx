@@ -12,7 +12,7 @@ const ResetPswComponent=()=>{
 
     async function handleReset(event){
         event.preventDefault()
-        const response= await  fetch(`https://library-mgm-cmf5.vercel.app/api/lib/reset/${libId}`,
+        const response= await  fetch(`http://localhost:5003/api/lib/reset/${libId}`,
             {
                 method:'POST',
                 headers:{

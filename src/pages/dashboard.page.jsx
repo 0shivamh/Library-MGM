@@ -17,7 +17,7 @@ const DashboardPage=()=>{
 
     async function getUser(){
         const email=localStorage.getItem('email')
-        const response= await fetch(`https://library-mgm-cmf5.vercel.app/api/lib/${email}`,);
+        const response= await fetch(`http://localhost:5003/api/lib/${email}`,);
         const data= await response.json();
         setLibrarian(data)
     }
