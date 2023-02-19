@@ -23,12 +23,14 @@ app.use('/', require(path.join(__dirname, 'Routes/user.route')))
 
 app.use('/', require(path.join(__dirname, 'Routes/books.route')))
 
+
+
 if(process.env.NODE_ENV=='production'){
     const path = require('path')
 
     app.get('/',(req,res)=>{
-        app.use(express.static(path.resolve(__dirname,'build')))
-        res.sendFile(path.resolve(__dirname,'build','index.html'))
+        app.use(express.static(path.resolve(__dirname,'client','build')))
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'))
     })
 }
 
