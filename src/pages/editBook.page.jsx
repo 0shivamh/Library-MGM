@@ -16,8 +16,6 @@ const EditBookPage=(props)=>{
 
     const closeBtn= useRef();
 
-    const [refreshVal,setrefreshVal]=useState(false)
-
     const handleChange = (newChips) => {
         setBookGenres(newChips) //bookGenres
     }
@@ -33,6 +31,7 @@ const EditBookPage=(props)=>{
         setBookGenres(props.book.bookGenres)
     },[props.book])
 
+    // for updating
     async function updateBook(event){
         event.preventDefault()
         const response= await fetch(`http://localhost:5003//api/editBook/${props.book._id}`,

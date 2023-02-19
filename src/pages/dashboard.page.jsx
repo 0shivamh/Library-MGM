@@ -15,6 +15,7 @@ const DashboardPage=()=>{
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // to get current loggedin user data
     async function getUser(){
         const email=localStorage.getItem('email')
         const response= await fetch(`http://localhost:5003/api/lib/${email}`,);

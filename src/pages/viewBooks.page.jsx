@@ -133,7 +133,7 @@ const ViewBooksPage=(props)=>{
                     </thead>
                     <tbody>
                     {
-
+                        // for search bar functionality
                         books.filter(book => {
                             if (query === '') {
                                 return book;

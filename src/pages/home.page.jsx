@@ -15,6 +15,8 @@ const HomePage=()=>{
     const [books, setBooks] = useState([]);
     const [showBook, setShowBook] = useState();
     const [query, setQuery] = useState("")
+
+    // to get all books
     async function getBooks(){
         setLoading(true);
         const response= await fetch("http://localhost:5003/api/viewBooks");
@@ -27,7 +29,7 @@ const HomePage=()=>{
         getBooks();
     },[])
 
-    // get boo details
+    // get book details
     const [book, setBook] = useState([]);
     async function getBook(book_id){
         const response= await fetch(`http://localhost:5003/api/getBook/${book_id}`);
@@ -45,6 +47,7 @@ const HomePage=()=>{
 
     return(<>
         <div>
+            {/*to view book */}
             <ViewBookPage bookId={bookId} book={book} show={showBook} close={()=>setShowBook(false)}/>
 
             <Row>

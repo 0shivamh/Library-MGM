@@ -18,6 +18,7 @@ const AddBookPage=(props)=>{
         setBookGenres(newChips) //bookGenres
     }
 
+    // function to add book data
     async function AddBook(event){
         event.preventDefault()
         const response= await fetch("http://localhost:5003/api/addBook",

@@ -118,6 +118,7 @@ app.post( "/api/signin",
     }
 );
 
+//  to get current loggedin user
 app.get("/api/lib/:email",  async (req, res) => {
     const email=req.params.email
     try {
@@ -128,6 +129,7 @@ app.get("/api/lib/:email",  async (req, res) => {
     }
 });
 
+//  to reset psw
 app.post("/api/lib/reset/:libId",
     [check("libId", "Please provide a valid id")],
     async (req, res) => {
