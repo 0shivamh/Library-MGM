@@ -35,7 +35,7 @@ const EditBookPage=(props)=>{
 
     async function updateBook(event){
         event.preventDefault()
-        const response= await fetch(`http://localhost:5003/api/editBook/${props.book._id}`,
+        const response= await fetch(`https://library-mgm-cmf5.vercel.app/api/editBook/${props.book._id}`,
             {
                 method:'POST',
                 headers:{

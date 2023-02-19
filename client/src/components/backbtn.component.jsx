@@ -1,9 +1,9 @@
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Col, Row} from "react-bootstrap";
 
 const BackbtnComponent = ()=>{
-    const navigate = useNavigate();
 
+    // back btn comp
 
     return(<>
                 <Row xs={2} className="noprint">

@@ -15,7 +15,7 @@ const SignUpPage=()=>{
 
     async function handleSignUp(event){
         event.preventDefault()
-        const response= await fetch("http://localhost:5003/api/signUp",
+        const response= await fetch("https://library-mgm-cmf5.vercel.app/api/signUp",
             {
                 method:'POST',
                 headers:{
