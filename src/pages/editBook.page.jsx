@@ -1,6 +1,6 @@
 import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
 import {MuiChipsInput} from "mui-chips-input";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Swal from "sweetalert2";
 import ViewBooksPage from "./viewBooks.page";
 
@@ -13,6 +13,8 @@ const EditBookPage=(props)=>{
     const [bookExcert, setBookExcert] = useState("")
     const [bookContent, setBookContent] = useState("")
     const [bookGenres, setBookGenres] = useState()
+
+    const closeBtn= useRef();
 
     const [refreshVal,setrefreshVal]=useState(false)
 
@@ -59,6 +61,7 @@ const EditBookPage=(props)=>{
                     icon:'success',
                     confirmButtonColor: '#5ae4a7'}
             )
+            closeBtn.current.click();
             props.getBooks(); // to refresh internally
         }
         else if(data.status==='error'){
@@ -123,7 +126,7 @@ const EditBookPage=(props)=>{
                         <Button className="white-btn mt-2 m-2" type="submit">
                             Update
                         </Button>
-                        <Button className="white-btn mt-2 m-2" onClick={props.close} >
+                        <Button ref={closeBtn} className="white-btn mt-2 m-2" onClick={props.close} >
                             Cancel
                         </Button>
                     </Form>

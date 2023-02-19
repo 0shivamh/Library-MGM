@@ -103,10 +103,13 @@ const ViewBooksPage=(props)=>{
         <>
             <ViewBookPage bookId={bookId} book={book} show={showBook} close={()=>setShowBook(false)}/>
             <EditBookPage book={book} show={SediBook} getBooks={getBooks} close={()=>setSEditBook(false)}/>
+            <AddBookPage show={showAddBook} getBooks={getBooks} close={()=>setShowAddBook(false)}/>
 
             <Row>
                 <Col>
+                    <Button variant="dark" className="m-1" onClick={() => setShowAddBook(true)}>Add a Book</Button>
                     <p className=" text-left h5">Total Books: {len}</p>
+
                 </Col>
                 <Col className="text-end">
                     <form className="d-flex mb-2" role="search">
@@ -124,7 +127,6 @@ const ViewBooksPage=(props)=>{
                         <th>Book Title</th>
                         <th>Book Author</th>
                         <th style={{textAlign:"right"}}>
-                            <AddBookPage show={showAddBook} getBooks={getBooks} close={()=>setShowAddBook(false)}/>
                             <Button variant="light" onClick={() => setShowAddBook(true)}>Add a Book</Button>
                         </th>
                     </tr>

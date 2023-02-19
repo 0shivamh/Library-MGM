@@ -1,6 +1,6 @@
 import {Button, FloatingLabel, Form, Modal} from "react-bootstrap";
 import { MuiChipsInput } from 'mui-chips-input'
-import {useState} from "react";
+import {useRef, useState} from "react";
 import Swal from "sweetalert2";
 import DashboardPage from "./dashboard.page";
 
@@ -13,7 +13,7 @@ const AddBookPage=(props)=>{
     const [bookContent, setBookContent] = useState('')
     const [bookGenres, setBookGenres] = useState('')
 
-
+    const closeBtn=useRef();
     const handleChange = (newChips) => {
         setBookGenres(newChips) //bookGenres
     }
@@ -49,6 +49,7 @@ const AddBookPage=(props)=>{
             ).then((result)=>{
                 if (result.isConfirmed) {
             }})
+            closeBtn.current.click();
             props.getBooks(); // to refresh internally
             setBookAvailability("")
             setBookTitle("")
@@ -123,7 +124,7 @@ const AddBookPage=(props)=>{
                         <Button className="white-btn mt-2 m-2" type="submit">
                             Add a Book
                         </Button>
-                        <Button className="white-btn mt-2 m-2" onClick={props.close} >
+                        <Button ref={closeBtn} className="white-btn mt-2 m-2" onClick={props.close} >
                             Cancel
                         </Button>
                     </Form>

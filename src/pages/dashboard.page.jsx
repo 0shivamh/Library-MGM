@@ -5,8 +5,8 @@ import {useEffect, useState} from "react";
 import ViewBooksPage from "./viewBooks.page";
 import {RxAvatar} from "react-icons/rx";
 import {BsPersonCircle} from "react-icons/bs";
+import AddBookPage from "./addBook.page";
 const DashboardPage=()=>{
-
 
     const [librarian,setLibrarian]=useState([])
 
