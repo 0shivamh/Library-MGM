@@ -3,7 +3,7 @@ import {useState} from "react";
 import Swal from "sweetalert2";
 import {Link, useNavigate} from "react-router-dom";
 
-const SignInPage=()=>{
+const SignInPage=(props)=>{
 
     const [email,setEmail] = useState();
     const [psw,setPsw] = useState();
@@ -39,6 +39,7 @@ const SignInPage=()=>{
                     allowEscapeKey: false}
             ).then((result) => {
                 if (result.isConfirmed) {
+                    props.auth(true)
                 }
             })
             navigate(`/dashboard`);

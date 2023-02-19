@@ -4,15 +4,22 @@ import {Link} from "react-router-dom";
 import Logout from "./logout.component";
 import logo from "../images/logo.png"
 import { RxAvatar } from 'react-icons/rx';
+import {useState} from "react";
+import SignInPage from "../pages/signin.page";
 
-const NavbarComponent = () =>{
+const NavbarComponent = (props) =>{
 
     const token = localStorage.getItem('token');
+    const [authStatus,setAuthStatus]=useState()
+
+    const auth=(authStatus)=>{
+        setAuthStatus(authStatus)
+    } // for navbar states
 
     return(
 
         <>
-            <Navbar  className="noprint py-4" sticky="top"  expand="lg shadow" bg="dark" style={{color:"white"}}>
+            <Navbar className="py-4" sticky="top"  expand="lg shadow" bg="dark" style={{color:"white"}}>
                 <Container>
                     <Navbar.Brand  style={{color:"white"}} href="/" >
                         <img
@@ -33,7 +40,7 @@ const NavbarComponent = () =>{
 
                             }
                             {
-                                token? <Logout/>:
+                                token? <Logout auth={auth}/>:
                                     <Link  className="btn white-btn m-lg-1" to="/signIn">Sign In</Link>
                             }
                             {
